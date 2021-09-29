@@ -31,3 +31,15 @@ jobs:
             builder_image: 'registry.access.redhat.com/ubi8/php-74'
             image: ${{ env.IMAGE_NAME }}
             tags: ${{ env.TAGS }}
+    # Push Image to Quay registry
+        - name: Push To Quay Action
+          if: >
+            (github.event_name == 'push' || github.event_name == 'schedule') &&
+            (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v'))
+          uses: redhat-actions/push-to-registry@v2
+          with:
+            image: ${{ env.IMAGE_NAME }}
+            tags: ${{ env.TAGS}}
+            registry: quay.io/${{ secrets.QUAY_USERNAME }}
+            username: ${{ secrets.QUAY_USERNAME }}
+            password: ${{ secrets.QUAY_PASSWORD }}
