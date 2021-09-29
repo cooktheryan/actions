@@ -5,7 +5,7 @@
           </hgroup>
 
 		<form action="upload.php" method="post" enctype="multipart/form-data">
-			<h2>Select a file to upload*:</h2>
+			<h2>Hi friends thanks for coming*:</h2>
 			<input type="file" name="fto" id="fto">
 			<input type="submit" value="Upload" name="submit">
 		</form><br>
